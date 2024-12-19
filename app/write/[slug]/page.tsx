@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEntriesStore } from '@/lib/store/entries';
 import { ImageUploadPrompt } from '@/components/image-upload-prompt';
 import { MinimalEditor } from '@/components/editor';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 interface WritePageProps {
   params: Promise<{ slug: string }>;
