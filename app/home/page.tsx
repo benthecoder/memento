@@ -13,16 +13,10 @@ export default function Home() {
   const [showImageUpload, setShowImageUpload] = useState(false);
 
   useEffect(() => {
-    const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
-    const isFromLanding = sessionStorage.getItem('isFromLanding');
-
-    if (!hasSeenWelcome && isFromLanding) {
+    if (entries.length === 0) {
       setShowWelcome(true);
-      localStorage.setItem('hasSeenWelcome', 'true');
     }
-
-    sessionStorage.removeItem('isFromLanding');
-  }, []);
+  }, [entries.length]);
 
   if (!isHydrated) {
     return null;
@@ -62,7 +56,7 @@ export default function Home() {
           <div className="text-center py-12">
             <h2 className="text-xl text-stone-300 mb-4">No entries yet</h2>
             <p className="text-stone-400">
-              Click the "New Entry" button above to get started
+              Click the &quot;New Entry&quot; button above to get started
             </p>
           </div>
         ) : (
