@@ -1,5 +1,7 @@
 # Memento
 
+![Landing page](/public/landing.jpeg)
+
 An intelligent journaling platform that transforms static entries into interactive reflections using AI.
 
 ## Why This Exists
@@ -9,6 +11,8 @@ Journaling often feels like writing into a void. Entries pile up, and it's hard 
 Traditional journals offer no guidance. It's difficult to remember old insights or see how current thoughts relate to previous ones. By using an LLM, you can easily revisit and build upon your past reflections. This reduces the mental effort of recalling details and encourages deeper thinking over time.
 
 ## Features
+
+![journal page](/public/journal.png)
 
 - **AI-Powered Writing Assistance**: Real-time suggestions and prompts using Cerebras LLaMA
 - **Image Analysis**: Intelligent image context understanding with Claude 3
