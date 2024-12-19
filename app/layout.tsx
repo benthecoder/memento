@@ -25,7 +25,6 @@ export const metadata: Metadata = {
     width: 'device-width',
     initialScale: 1,
   },
-  themeColor: '#1C1917', // Matches your surface color from tailwind config
 };
 
 export default function RootLayout({
