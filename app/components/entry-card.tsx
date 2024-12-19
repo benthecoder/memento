@@ -5,6 +5,18 @@ import { format, parseISO } from 'date-fns';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { useEntriesStore } from '@/lib/store/entries';
 
 interface EntryCardProps {
   entry: JournalEntry;
@@ -12,7 +24,13 @@ interface EntryCardProps {
 
 export function EntryCard({ entry }: EntryCardProps) {
   const router = useRouter();
+  const deleteEntry = useEntriesStore((state) => state.deleteEntry);
   const hasImages = entry.imageContexts && entry.imageContexts.length > 0;
+
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card click event
+    deleteEntry(entry.id);
+  };
 
   // Dynamic grid layout helper
   const getImageLayout = (index: number, total: number) => {
@@ -39,8 +57,56 @@ export function EntryCard({ entry }: EntryCardProps) {
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.2 }}
       onClick={() => router.push(`/write/${entry.id}`)}
-      className="group cursor-pointer"
+      className="group relative cursor-pointer"
     >
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <button
+            onClick={(e) => e.stopPropagation()}
+            className="absolute top-2 right-2 p-2 rounded-full bg-stone-800/80 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-stone-700/80 z-10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-stone-300"
+            >
+              <path d="M3 6h18" />
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+            </svg>
+          </button>
+        </AlertDialogTrigger>
+        <AlertDialogContent className="bg-stone-950 border border-stone-800">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-stone-200">
+              Delete Entry
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-stone-400">
+              Are you sure you want to delete &quot;{entry.title}&quot;? This
+              action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="bg-stone-900 border-stone-800 hover:bg-stone-800 text-stone-300">
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleDelete}
+              className="bg-red-900 hover:bg-red-800 text-stone-200"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
       <div className="bg-[#1C1917]/95 backdrop-blur-sm rounded-2xl overflow-hidden border border-amber-800/20">
         {/* Image Grid */}
         {hasImages && (
