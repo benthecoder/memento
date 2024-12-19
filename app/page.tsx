@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
       <Image
-        src="/landing.jpeg"
+        src="/home.jpeg"
         alt="Peaceful journaling scene"
         fill
         priority
@@ -50,16 +50,17 @@ export default function Home() {
         <button
           onClick={() => router.push('/home')}
           className={`
-            px-8 md:px-12 py-4
-            bg-white/80 backdrop-blur-sm
-            text-gray-900 
-            rounded-full 
+            px-8 md:px-12 py-3.5
+            bg-amber-900/20 hover:bg-amber-900/30
+            border border-stone-200/30
+            text-stone-100
+            rounded-lg
             transition-all
-            hover:scale-105 
-            duration-300 
-            text-lg md:text-xl
-            font-semibold
-            tracking-wide 
+            duration-300
+            text-lg
+            font-medium
+            tracking-wide
+            backdrop-blur-sm
             ${lora.className}
           `}
         >
