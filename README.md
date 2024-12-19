@@ -1,8 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Memento
+
+An intelligent journaling platform that transforms static entries into interactive reflections using AI.
+
+## Why This Exists
+
+Journaling often feels like writing into a void. Entries pile up, and it's hard to see patterns or recall past thoughts. By integrating an LLM, the journal becomes more than a static record—it becomes an active thought partner. Instead of simply storing ideas, it can connect them, surface forgotten themes, and suggest new angles to explore.
+
+Traditional journals offer no guidance. It's difficult to remember old insights or see how current thoughts relate to previous ones. By using an LLM, you can easily revisit and build upon your past reflections. This reduces the mental effort of recalling details and encourages deeper thinking over time.
+
+## Features
+
+- **AI-Powered Writing Assistance**: Real-time suggestions and prompts using Cerebras LLaMA
+- **Image Analysis**: Intelligent image context understanding with Claude 3
+- **Interactive Interface**: Split-view design with writing area and AI suggestions
+- **Multi-Image Support**: Upload up to 5 images per entry
+- **Responsive Design**: Optimized for both desktop and mobile experiences
+
+## Tech Stack
+
+- [Next.js 15](https://nextjs.org) (App Router)
+- TypeScript
+- [Anthropic's Claude 3](https://www.anthropic.com/claude) for image analysis
+- [Cerebras LLaMA](https://www.cerebras.net/) for text generation
+- Tailwind CSS for styling
+- Framer Motion for animations
+- Zustand for state management
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+3. Set up your environment variables:
+
+```env
+ANTHROPIC_API_KEY=your_api_key
+CEREBRAS_API_KEY=your_api_key
+```
+
+4. Run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +60,27 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Architecture
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Server Components**: Leverages Next.js 14 App Router for optimal performance
+- **AI Integration**: Dual LLM approach with Claude 3 for image understanding and Cerebras for text generation
+- **Real-time Processing**: Fast inference using Cerebras' backend for fluid interactions
+- **Local Storage**: Client-side persistence for journal entries
+- **Responsive UI**: Mobile-first design with Tailwind CSS
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+MIT License - feel free to use this project for your own learning and development.
 
-## Deploy on Vercel
+## Connect With Me
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Email: [bneo@usfca.edu](mailto:bneo@usfca.edu)
+- Website: [https://bneo.xyz](https://bneo.xyz/)
+- Twitter: [@benxneo](https://twitter.com/benxneo)
+- LinkedIn: [benedictneo](https://www.linkedin.com/in/benedictneo/)
