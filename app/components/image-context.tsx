@@ -1,63 +1,45 @@
 'use client';
 
-import { Image as ImageIcon, X } from 'lucide-react';
-import Image from 'next/image';
+import { ImageIcon } from 'lucide-react';
 import { ImageContext as ImageContextType } from '@/lib/store/entries';
-import { useState } from 'react';
 
 interface ImageContextProps {
   images: ImageContextType[];
+  isOpen: boolean;
+  onToggle: () => void;
 }
 
-export function ImageContext({ images }: ImageContextProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
+export function ImageContext({ images, isOpen, onToggle }: ImageContextProps) {
   return (
     <>
+      {/* Context Toggle Button */}
       <button
-        onClick={() => setIsOpen(true)}
-        className="flex items-center gap-1.5 text-stone-400 hover:text-stone-300 transition-colors"
+        onClick={onToggle}
+        className="fixed right-8 bottom-8 flex items-center justify-center
+           w-14 h-14 bg-surface-secondary/90 
+           hover:bg-surface-hover/90 
+           rounded-full border border-accent-muted 
+           backdrop-blur-sm transition-all z-50
+           shadow-lg hover:scale-105 active:scale-95"
       >
-        <ImageIcon className="w-4 h-4" />
-        <span className="text-sm">{images.length}</span>
-      </button>
-
-      {isOpen && (
-        <div
-          className="fixed inset-y-0 right-0 w-72 bg-stone-900/95 border-l border-amber-800/20 
-                    backdrop-blur-sm shadow-xl z-50 overflow-y-auto"
-        >
-          <div className="sticky top-0 bg-stone-900/95 backdrop-blur-sm p-4 border-b border-amber-800/20">
-            <div className="flex items-center justify-between">
-              <h3 className="text-lg font-medium">Images</h3>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-stone-400 hover:text-stone-300"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-
-          <div className="p-4">
-            <div className="grid grid-cols-2 gap-2">
-              {images.map((img, idx) => (
-                <div
-                  key={idx}
-                  className="relative aspect-square rounded-lg overflow-hidden"
-                >
-                  <Image
-                    src={img.url}
-                    alt=""
-                    fill
-                    className="object-cover hover:scale-105 transition-transform"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="relative">
+          <ImageIcon
+            className={`w-6 h-6 transition-transform ${
+              isOpen ? 'rotate-45' : ''
+            }`}
+          />
+          {images.length > 0 && (
+            <span
+              className="absolute -top-2 -right-2 
+                    w-5 h-5 flex items-center justify-center
+                    bg-accent rounded-full text-xs font-medium
+                    text-text-inverse"
+            >
+              {images.length}
+            </span>
+          )}
         </div>
-      )}
+      </button>
     </>
   );
 }
