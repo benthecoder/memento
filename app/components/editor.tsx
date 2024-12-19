@@ -60,17 +60,20 @@ export function MinimalEditor({ entry }: MinimalEditorProps) {
     return (
       <div
         className={`bg-surface-overlay backdrop-blur-sm rounded-xl p-4 
-                   border border-accent-muted shadow-lg
+                   border border-accent-muted shadow-lg select-none
                    ${isInitialPrompt ? 'max-w-md' : 'max-w-xs'}`}
+        onMouseDown={(e) => e.preventDefault()} // Prevent drag selection
       >
         {isThinking ? (
-          <div className="flex items-center gap-2">
-            <div className="animate-pulse text-text-secondary">Thinking</div>
-            <div className="flex gap-1">
+          <div className="flex items-center gap-2 select-none">
+            <div className="animate-pulse text-text-secondary select-none">
+              Thinking
+            </div>
+            <div className="flex gap-1 select-none">
               {[0, 150, 300].map((delay) => (
                 <div
                   key={delay}
-                  className="w-1.5 h-1.5 rounded-full bg-accent animate-bounce-subtle"
+                  className="w-1.5 h-1.5 rounded-full bg-accent animate-bounce-subtle select-none"
                   style={{ animationDelay: `${delay}ms` }}
                 />
               ))}
@@ -78,9 +81,8 @@ export function MinimalEditor({ entry }: MinimalEditorProps) {
           </div>
         ) : (
           <p
-            className={`text-text-secondary ${
-              isInitialPrompt ? 'text-body-lg' : 'text-body-md'
-            }`}
+            className={`text-text-secondary select-none pointer-events-none
+              ${isInitialPrompt ? 'text-body-lg' : 'text-body-md'}`}
           >
             {suggestion}
           </p>
@@ -88,7 +90,6 @@ export function MinimalEditor({ entry }: MinimalEditorProps) {
       </div>
     );
   };
-
   return (
     <div className="min-h-screen bg-surface text-text-primary">
       <ImageContext

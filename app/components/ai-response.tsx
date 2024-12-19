@@ -25,7 +25,7 @@ export function AiResponse({
       >
         <div
           className={`bg-surface-overlay backdrop-blur-sm rounded-xl p-4 
-                   border border-accent-muted shadow-lg
+                   border border-accent-muted shadow-lg select-none
                    ${isInitialPrompt ? 'max-w-md' : 'max-w-xs'}`}
         >
           {isThinking ? (
