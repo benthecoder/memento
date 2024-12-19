@@ -3,15 +3,16 @@
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Crimson_Pro, Lora } from 'next/font/google';
+import { motion } from 'framer-motion';
 
 const crimson = Crimson_Pro({
   subsets: ['latin'],
-  weight: ['400', '700'], // Changed to include 700 weight
+  weight: ['400', '800'],
 });
 
 const lora = Lora({
   subsets: ['latin'],
-  weight: ['500', '600'], // Changed to include heavier weights
+  weight: ['400', '600'],
 });
 
 export default function Home() {
@@ -24,48 +25,60 @@ export default function Home() {
         alt="Peaceful journaling scene"
         fill
         priority
-        className="object-cover object-center brightness-[0.85] transform scale-105" // Lightened the image
+        className="object-cover object-center brightness-[0.85] transform scale-105"
       />
 
-      {/* Lighter gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
 
-      {/* Content wrapper remains the same */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-20 p-8 md:p-12">
-        {/* Text content remains the same */}
-        <div className="space-y-4 text-center">
+      <div className="absolute inset-0 flex flex-col items-center justify-start pt-60 sm:pt-32 md:pt-52 gap-10 sm:gap-8 px-6 sm:px-8 md:p-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="space-y-4 text-center w-full max-w-[95%] sm:max-w-full"
+        >
           <h1
-            className={`text-5xl md:text-7xl ${crimson.className} text-white tracking-wide font-bold drop-shadow-lg`}
+            className={`text-6xl sm:text-7xl md:text-8xl ${crimson.className} text-white font-bold`}
           >
             Memento
           </h1>
           <p
-            className={`text-2xl md:text-4xl ${lora.className} text-stone-100 font-medium drop-shadow-lg`}
+            className={`text-2xl sm:text-3xl md:text-4xl ${lora.className} text-stone-100 font-light drop-shadow-lg`}
           >
             Mindful journaling with AI
           </p>
-        </div>
+        </motion.div>
 
-        {/* Updated translucent button */}
-        <button
+        <motion.button
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 1,
+            ease: [0.4, 0, 0.2, 1], // Use cubic bezier for smoother motion
+            delay: 0.2,
+          }}
+          whileHover={{
+            backgroundColor: 'rgba(120, 53, 15, 0.3)',
+            transition: { duration: 0.1 },
+          }}
           onClick={() => router.push('/home')}
           className={`
-            px-8 md:px-12 py-3.5
-            bg-amber-900/20 hover:bg-amber-900/30
+            px-8 sm:px-10 md:px-10 
+            py-4 sm:py-4
+            bg-amber-900/20
             border border-stone-200/30
             text-stone-100
             rounded-lg
-            transition-all
-            duration-300
-            text-lg
+            text-md sm:text-md
             font-medium
             tracking-wide
             backdrop-blur-sm
+            w-fit
             ${lora.className}
           `}
         >
           Start Writing
-        </button>
+        </motion.button>
       </div>
     </div>
   );
