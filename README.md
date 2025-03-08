@@ -4,6 +4,8 @@
 
 An intelligent journaling platform that transforms static entries into interactive reflections using AI.
 
+Read the blogpost for demo video! https://benneo.notion.site/Memento-153e5d677bb1807e91eac9c255cc7539
+
 ## Why This Exists
 
 Journaling often feels like writing into a void. Entries pile up, and it's hard to see patterns or recall past thoughts. By integrating an LLM, the journal becomes more than a static record—it becomes an active thought partner. Instead of simply storing ideas, it can connect them, surface forgotten themes, and suggest new angles to explore.
